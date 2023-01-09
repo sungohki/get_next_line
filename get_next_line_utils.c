@@ -6,13 +6,13 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 15:52:03 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/09 14:54:27 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:10:40 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	malloc_line(char *ch)
+char	*malloc_line(char *ch)
 {
 	int		len;
 	char	*result;

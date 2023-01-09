@@ -6,7 +6,7 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/09 14:48:52 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:09:34 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # define BUFFER_SIZE	100
 
 char	*get_next_line(int fd);
+char	*malloc_line(char *ch);
 
 #endif
