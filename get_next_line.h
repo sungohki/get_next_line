@@ -6,7 +6,7 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/09 16:09:34 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:31:26 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <stdlib.h>
 # include <limits.h>
 
-# define BUFFER_SIZE	100
+# define BUFFER_SIZE	1024
 
 char	*get_next_line(int fd);
-char	*malloc_line(char *ch);
+char	*malloc_line(char *ch, int *buffer);
 
 #endif

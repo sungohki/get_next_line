@@ -6,25 +6,28 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 15:52:03 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/09 16:10:40 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:14:17 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*malloc_line(char *ch)
+char	*malloc_line(char *ch, int *buffer)
 {
-	int		len;
 	char	*result;
+	int		len;
+	int		temp;
 
-	len = 0;
-	while (ch[len] == 0)
+	len = *buffer;
+	while (ch[len] != 0 && ch[len] != '\n')
 		len++;
-	result = (char *)malloc(sizeof(char) * (len + 1));
+	result = (char *)malloc(sizeof(char) * (len + 1 - *buffer));
 	if (result == 0)
 		return (NULL);
-	result[len] = 0;
-	while (len-- > 0)
-		result[len] = ch[len];
+	temp = 0;
+	while (*buffer < len)
+		result[temp] = ch[*buffer++];
+	result[len] = ch[len];
+	*buffer++;
 	return (result);
 }
