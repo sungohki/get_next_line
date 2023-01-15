@@ -6,54 +6,57 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:06:19 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/14 03:07:57 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/15 21:01:48 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*malloc_1(char *ch, int *buffer, int flag)
+int	has_eof(char *temp)
 {
-	char	*result;
 	int		len;
-	int		temp;
-
-	len = *buffer;
-	while (len < flag && (ch[len] != 0 && ch[len] != '\n'))
-		len++;
-	result = (char *)malloc(sizeof(char) * (len + 1 - *buffer));
-	if (result == 0)
-		return (NULL);
-	temp = 0;
-	while (*buffer < BUFFER_SIZE && *buffer < len)
-		result[temp++] = ch[(*buffer)++];
-	if (len == flag)
-		result[temp] = 0;
-	else
-		result[temp] = '\n';
-	return (result);
-}
-
-char	*malloc_0(char *ch, int flag)
-{
-	char	*result;
-	int		len;
-	int		temp;
 
 	len = 0;
-	while (len < flag && (ch[len] != 0 && ch[len] != '\n'))
-		len++;
-	result = (char *)malloc(sizeof(char) * (len + 1));
-	if (result == 0)
-		return (NULL);
-	temp = 0;
-	result[(len--)] = 0;
-	while (temp < len)
+	while (len < BUFFER_SIZE)
 	{
-		result[temp] = ch[temp];
-		temp++;
+		if (temp[len] == 0)
+			return (1);
 	}
-	return (result);
+	return (0);
+}
+
+int	line_len(char *temp, int cursor, int flag)
+{
+	int		len;
+
+	len = cursor;
+	while (len < flag && temp[len] != '\n' && temp[len] != 0)
+	// 개행 또는 \0을 만날 때까지 길이 측정
+		len++;
+	if (len < flag && temp[len] == '\n')
+	// 만약 마지막이 개행이었을 경우, \0자리를 위한 길이 1 추가
+		len++;
+	return (len);
+}
+
+char	*malloc_line(char *temp, int cursor, int flag)
+{
+	char		*line;
+	int			len;
+	int			index;
+
+	len = line_len(temp, cursor, flag);
+	line = (char *)malloc(sizeof(char) * (len + 1));
+	if (line == NULL)
+		return (NULL);
+	index = 0;
+	while (index < len)
+	{
+		line[index] = temp[index + cursor];
+		index++;
+	}
+	line[len] = 0;
+	return (line);
 }
 
 int	has_null(char *temp)
