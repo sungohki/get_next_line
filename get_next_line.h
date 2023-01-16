@@ -6,7 +6,7 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/17 01:59:25 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/17 04:03:38 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int		is_endofline(char *temp, int cursor);
 int		line_len(char *temp, int cursor);
 char	*malloc_line(char *temp, int cursor);
 char	*ft_strjoin(char *dst, char *src);
-void	ft_bzero(void *s, size_t n);
+int		init(int *flag, int *cursor, char *temp, int fd);
 
 #endif

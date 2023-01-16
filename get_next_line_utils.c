@@ -6,19 +6,27 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:06:19 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/16 23:53:12 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/17 03:59:14 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_bzero(void *s, size_t n)
+int	init(int *flag, int *cursor, char *temp, int fd)
 {
-	unsigned char	*temp;
+	int		index;
 
-	temp = (unsigned char *)s;
-	while (n--)
-		temp[n] = 0;
+	if (fd < 0 || BUFFER_SIZE < 0)
+		return (0);
+	index = BUFFER_SIZE;
+	while (index--)
+		temp[index] = 0;
+	*flag = read(fd, temp, BUFFER_SIZE);
+	*cursor = 0;
+	if (*flag == -1 || *flag == 0)
+		return (0);
+	else
+		return (1);
 }
 
 int	is_endofline(char *temp, int cursor)
@@ -55,10 +63,7 @@ char	*malloc_line(char *temp, int cursor)
 	int			len;
 	int			index;
 
-	if (is_endofline(temp, cursor) == 0)
-		len = BUFFER_SIZE;
-	else
-		len = line_len(temp, cursor);
+	len = line_len(temp, cursor);
 	line = (char *)malloc(sizeof(char) * (len + 1));
 	if (line == NULL)
 		return (NULL);
