@@ -6,7 +6,7 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:41 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:59:25 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 # include <limits.h>
 
 char	*get_next_line(int fd);
-int		is_endofline(char *temp);
-int		line_len(char *temp);
+int		is_endofline(char *temp, int cursor);
+int		line_len(char *temp, int cursor);
 char	*malloc_line(char *temp, int cursor);
 char	*ft_strjoin(char *dst, char *src);
+void	ft_bzero(void *s, size_t n);
 
 #endif
