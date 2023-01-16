@@ -6,7 +6,7 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:06:19 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/17 03:59:14 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/17 05:01:46 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,30 @@ int	init(int *flag, int *cursor, char *temp, int fd)
 
 int	is_endofline(char *temp, int cursor)
 {
-	int		len;
+	int		index;
 
-	len = cursor;
-	while (len < BUFFER_SIZE)
+	index = cursor;
+	while (index < BUFFER_SIZE)
 	{
-		if (temp[len] == 0)
-			return (1);
-		else if (temp[len] == '\n')
-			return (2);
-		len++;
+		if (temp[index] == 0)
+			return (index);
+		else if (temp[index] == '\n')
+			return (index + 1);
+		index++;
 	}
-	return (0);
+	return (-1);
 }
 
 int	line_len(char *temp, int cursor)
 {
-	int		len;
+	int		start;
+	int		end;
 
-	len = cursor;
-	while (len < BUFFER_SIZE && temp[len] != '\n' && temp[len] != 0)
-		len++;
-	if (temp[len] == '\n')
-		len++;
-	return (len - cursor);
+	end = is_endofline(temp, cursor);
+	if (end == -1)
+		return (BUFFER_SIZE - cursor);
+	start = cursor;
+	return (end - start);
 }
 
 char	*malloc_line(char *temp, int cursor)

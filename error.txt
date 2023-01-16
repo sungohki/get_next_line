@@ -1,0 +1,21 @@
+Errors found:
+Error in test 4: get_next_line(5: "giant_line.txt"):
+malloc protection check for 396th malloc:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in ft_strjoin get_next_line_utils.c:95:9
+     in get_next_line get_next_line.c:32:10
+     in null_check_gnl file_utils.c:116:7
+     in main tester.c:173:3
+: Timeout occurred. You can increase the timeout by executing francinette 
+--timeout <number of seconds>
+Error in test 5: get_next_line(5: "giant_line_nl.txt"):
+malloc protection check for 396th malloc:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in ft_strjoin get_next_line_utils.c:95:9
+     in get_next_line get_next_line.c:32:10
+     in null_check_gnl file_utils.c:116:7
+     in main tester.c:181:3
+: Timeout occurred. You can increase the timeout by executing francinette 
+--timeout <number of seconds>

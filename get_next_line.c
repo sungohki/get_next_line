@@ -6,7 +6,7 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 15:52:01 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/17 04:02:15 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/17 05:08:04 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_next_line(int fd)
 		if (init(&flag, &cursor, temp, fd) == 0)
 			return (NULL);
 	result = malloc_line(temp, cursor);
-	while (is_endofline(temp, cursor) == 0)
+	while (is_endofline(temp, cursor) == -1)
 	{
 		if (init(&flag, &cursor, temp, fd) == 0)
 			break ;
