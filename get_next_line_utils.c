@@ -6,13 +6,13 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:06:19 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/15 21:01:48 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:01:52 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	has_eof(char *temp)
+int	is_endofline(char *temp)
 {
 	int		len;
 
@@ -21,31 +21,32 @@ int	has_eof(char *temp)
 	{
 		if (temp[len] == 0)
 			return (1);
+		else if (temp[len] == '\n')
+			return (2);
+		len++;
 	}
 	return (0);
 }
 
-int	line_len(char *temp, int cursor, int flag)
+int	line_len(char *temp)
 {
 	int		len;
 
-	len = cursor;
-	while (len < flag && temp[len] != '\n' && temp[len] != 0)
-	// 개행 또는 \0을 만날 때까지 길이 측정
+	len = 0;
+	while (len < BUFFER_SIZE && temp[len] != '\n' && temp[len] != 0)
 		len++;
-	if (len < flag && temp[len] == '\n')
-	// 만약 마지막이 개행이었을 경우, \0자리를 위한 길이 1 추가
+	if (len < BUFFER_SIZE && temp[len] == '\n')
 		len++;
 	return (len);
 }
 
-char	*malloc_line(char *temp, int cursor, int flag)
+char	*malloc_line(char *temp, int cursor)
 {
 	char		*line;
 	int			len;
 	int			index;
 
-	len = line_len(temp, cursor, flag);
+	len = line_len(&temp[cursor]);
 	line = (char *)malloc(sizeof(char) * (len + 1));
 	if (line == NULL)
 		return (NULL);
@@ -59,15 +60,27 @@ char	*malloc_line(char *temp, int cursor, int flag)
 	return (line);
 }
 
-int	has_null(char *temp)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		len;
+	char	*result;
+	int		s1_len;
+	int		s2_len;
 
-	len = 0;
-	while (len < BUFFER_SIZE)
-	{
-		if (temp[len++] == 0)
-			return (1);
-	}
-	return (0);
+	if (s2 == 0)
+		return (s1);
+	if (!(s1) || !(s2))
+		return (0);
+	s1_len = 0;
+	while (s1[s1_len] != 0 || s1[s1_len] != 0)
+		s1_len++;
+	s2_len = line_len(s2);
+	result = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (result == 0)
+		return (0);
+	result[s1_len + s2_len] = 0;
+	while (s2_len--)
+		result[s1_len + s2_len] = s2[s2_len];
+	while (s1_len--)
+		result[s1_len] = s1[s1_len];
+	return (result);
 }

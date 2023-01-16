@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:41 by sungohki         ###   ########.fr       */
+/*   Created: 2022/11/11 16:48:47 by sungohki          #+#    #+#             */
+/*   Updated: 2022/12/10 00:37:39 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+char	*ft_strchr(const char *s, int c)
+{
+	char	*result;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1024
-# endif
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
-char	*get_next_line(int fd);
-int		is_endofline(char *temp);
-int		line_len(char *temp);
-char	*malloc_line(char *temp, int cursor);
-char	*ft_strjoin(char *dst, char *src);
-
-#endif
+	result = (char *)s;
+	while (*result)
+	{
+		if ((unsigned char)*result == (unsigned char)c)
+			return (result);
+		result++;
+	}
+	if ((unsigned char)c == 0)
+		return (result);
+	else
+		return (0);
+}

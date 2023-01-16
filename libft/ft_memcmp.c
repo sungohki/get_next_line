@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:41 by sungohki         ###   ########.fr       */
+/*   Created: 2022/11/14 11:48:15 by sungohki          #+#    #+#             */
+/*   Updated: 2022/11/28 14:08:49 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1024
-# endif
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	const unsigned char	*temp1;
+	const unsigned char	*temp2;
+	size_t				index;
+	int					result;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
-char	*get_next_line(int fd);
-int		is_endofline(char *temp);
-int		line_len(char *temp);
-char	*malloc_line(char *temp, int cursor);
-char	*ft_strjoin(char *dst, char *src);
-
-#endif
+	temp1 = (const unsigned char *)s1;
+	temp2 = (const unsigned char *)s2;
+	index = 0;
+	result = 0;
+	while (index < n)
+	{
+		result = temp1[index] - temp2[index];
+		if (result != 0)
+			return (result);
+		index++;
+	}
+	return (0);
+}

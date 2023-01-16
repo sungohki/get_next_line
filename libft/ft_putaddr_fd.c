@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putaddr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:41 by sungohki         ###   ########.fr       */
+/*   Created: 2022/12/19 17:23:40 by sungohki          #+#    #+#             */
+/*   Updated: 2022/12/21 22:09:10 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1024
-# endif
+static void	addr_write(unsigned long n, int fd)
+{
+	char	temp;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
+	temp = "0123456789abcdef"[n % 16];
+	if (n / 16 > 0)
+		addr_write(n / 16, fd);
+	write(fd, &temp, 1);
+}
 
-char	*get_next_line(int fd);
-int		is_endofline(char *temp);
-int		line_len(char *temp);
-char	*malloc_line(char *temp, int cursor);
-char	*ft_strjoin(char *dst, char *src);
-
-#endif
+void	ft_putaddr_fd(void *ch, int fd)
+{
+	write(fd, "0x", 2);
+	addr_write((unsigned long)ch, fd);
+}

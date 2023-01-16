@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:41 by sungohki         ###   ########.fr       */
+/*   Created: 2022/11/07 19:07:04 by sungohki          #+#    #+#             */
+/*   Updated: 2022/11/28 17:09:28 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1024
-# endif
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*temp;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
-char	*get_next_line(int fd);
-int		is_endofline(char *temp);
-int		line_len(char *temp);
-char	*malloc_line(char *temp, int cursor);
-char	*ft_strjoin(char *dst, char *src);
-
-#endif
+	temp = (unsigned char *)s;
+	while (n--)
+		temp[n] = 0;
+}

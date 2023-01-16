@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:41 by sungohki         ###   ########.fr       */
+/*   Created: 2022/11/10 10:10:50 by sungohki          #+#    #+#             */
+/*   Updated: 2022/12/10 00:40:02 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1024
-# endif
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	src_len;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
-char	*get_next_line(int fd);
-int		is_endofline(char *temp);
-int		line_len(char *temp);
-char	*malloc_line(char *temp, int cursor);
-char	*ft_strjoin(char *dst, char *src);
-
-#endif
+	src_len = ft_strlen(src);
+	if (src_len + 1 < dstsize)
+		dstsize = src_len + 1;
+	if (dst == src || dstsize == 0)
+		return (src_len);
+	dst[--dstsize] = 0;
+	while (dstsize--)
+		dst[dstsize] = src[dstsize];
+	return (src_len);
+}

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/31 15:51:57 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/16 16:58:41 by sungohki         ###   ########.fr       */
+/*   Created: 2022/11/14 17:31:52 by sungohki          #+#    #+#             */
+/*   Updated: 2022/12/10 00:33:43 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1024
-# endif
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*temp;
+	size_t	index;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
-char	*get_next_line(int fd);
-int		is_endofline(char *temp);
-int		line_len(char *temp);
-char	*malloc_line(char *temp, int cursor);
-char	*ft_strjoin(char *dst, char *src);
-
-#endif
+	index = 0;
+	if (size != 0 && count > SIZE_MAX / size)
+		return (0);
+	temp = malloc(size * count);
+	if (temp == 0)
+		return (0);
+	ft_bzero(temp, count * size);
+	return (temp);
+}
