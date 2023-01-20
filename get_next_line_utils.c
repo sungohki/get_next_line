@@ -6,7 +6,7 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:06:19 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/20 17:26:39 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:47:41 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ int	is_endofline(char *temp, int cursor)
 	index = cursor;
 	while (index < BUFFER_SIZE)
 	{
-		if (temp[index] == 0)
-			return (index);
-		else if (temp[index] == '\n')
-			return (index + 1);
+		if (temp[index] == 0 || temp[index] == '\n')
+			return (index + temp[index] / (int) '\n');
 		index++;
 	}
 	return (-1);
@@ -47,14 +45,12 @@ int	is_endofline(char *temp, int cursor)
 
 int	line_len(char *temp, int cursor)
 {
-	int		start;
 	int		end;
 
 	end = is_endofline(temp, cursor);
 	if (end == -1)
 		return (BUFFER_SIZE - cursor);
-	start = cursor;
-	return (end - start);
+	return (end - cursor);
 }
 
 char	*malloc_line(char *temp, int cursor)
@@ -84,12 +80,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		s1_len;
 	int		s2_len;
 
-	if (s2 == 0)
-		return (s1);
-	if (!(s1) || !(s2))
-		return (0);
+	if (!(s1))
+		return (NULL);
 	s1_len = 0;
-	while (s1[s1_len] != 0 || s1[s1_len] != 0)
+	while (s1[s1_len] != 0)
 		s1_len++;
 	s2_len = line_len(s2, 0);
 	result = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
