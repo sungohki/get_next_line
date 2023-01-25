@@ -6,7 +6,7 @@
 /*   By: sungohki <sungohki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:06:19 by sungohki          #+#    #+#             */
-/*   Updated: 2023/01/20 19:47:41 by sungohki         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:26:36 by sungohki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	line_len(char *temp, int cursor)
 {
 	int		end;
 
+	if (temp == NULL)
+		return (0);
 	end = is_endofline(temp, cursor);
 	if (end == -1)
 		return (BUFFER_SIZE - cursor);
